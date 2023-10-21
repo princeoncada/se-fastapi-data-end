@@ -47,5 +47,14 @@ def test():
     return "Hello World!"
 
 
+@app.get("/health")
+def health():
+    string = "OK"
+    try:
+        return string
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
 if __name__ == '__main__':
     uvicorn.run(app)
