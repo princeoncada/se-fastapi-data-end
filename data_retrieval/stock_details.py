@@ -1,10 +1,11 @@
 from selenium.webdriver import Chrome
-from selenium.common import TimeoutException
-from selenium.webdriver.common.action_chains import ActionChains
+from selenium.common.exceptions import TimeoutException
+from selenium.webdriver.chrome.service import Service
+from webdriver_manager.chrome import ChromeDriverManager
 
 
 def details(url, headers, options):
-    with Chrome(options=options) as driver:
+    with Chrome(service=Service(ChromeDriverManager().install()), options=options) as driver:
         driver.get(url)
         try:
             inner_dictionary = {
@@ -17,7 +18,7 @@ def details(url, headers, options):
                 "Full Time Employees": None,
                 "Description": None
             }
-            ActionChains(driver).scroll_by_amount(0, 10000).perform()
+
             for key, value in headers.items():
                 try:
                     if key == "Address":
