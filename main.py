@@ -1,5 +1,4 @@
 import asyncio
-import os
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from data_retrieval.stock_scraper import scrape

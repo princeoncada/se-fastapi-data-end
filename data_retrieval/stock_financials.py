@@ -1,14 +1,10 @@
 import os
-
-from selenium.webdriver import Chrome
+from selenium.webdriver import Remote
 from selenium.common.exceptions import NoSuchElementException, TimeoutException
-from selenium.webdriver.chrome.service import Service
-from webdriver_manager.chrome import ChromeDriverManager
 
 
 def financials(url, headers, options):
-    service = Service(ChromeDriverManager().install())
-    with Chrome(service=service, options=options) as driver:
+    with Remote(command_executor=os.environ["grid_hub_url"], options=options) as driver:
         driver.get(url)
         try:
             inner_dictionary = {}
