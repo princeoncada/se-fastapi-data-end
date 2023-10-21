@@ -17,11 +17,11 @@ def parser(stock_data, ticker):
 
     # Convert numeric columns to float (excluding "Breakdown" columns)
     cols_to_convert = income_statement_df.columns.difference(["Breakdown"])
-    income_statement_df[cols_to_convert] = income_statement_df[cols_to_convert].map(convert_to_float)
+    income_statement_df[cols_to_convert] = income_statement_df[cols_to_convert].applymap(convert_to_float)
     cols_to_convert = balance_sheet_df.columns.difference(["Breakdown"])
-    balance_sheet_df[cols_to_convert] = balance_sheet_df[cols_to_convert].map(convert_to_float)
+    balance_sheet_df[cols_to_convert] = balance_sheet_df[cols_to_convert].applymap(convert_to_float)
     cols_to_convert = cash_flow_df.columns.difference(["Breakdown"])
-    cash_flow_df[cols_to_convert] = cash_flow_df[cols_to_convert].map(convert_to_float)
+    cash_flow_df[cols_to_convert] = cash_flow_df[cols_to_convert].applymap(convert_to_float)
 
     # Calculate Ratios
     statistics_dict = calculate_ratios(income_statement_df, cash_flow_df, statistics_dict)
