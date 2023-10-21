@@ -5,7 +5,7 @@ from webdriver_manager.chrome import ChromeDriverManager
 
 
 def statistics(url, headers, options):
-    with Chrome(service=Service(ChromeDriverManager().install()), options=options) as driver:
+    with Chrome(options=options) as driver:
         driver.get(url)
         try:
             inner_dictionary = {}

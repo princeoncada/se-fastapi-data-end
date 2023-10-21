@@ -1,10 +1,9 @@
 from selenium import webdriver
-from selenium.webdriver.chrome.service import Service
-from webdriver_manager.chrome import ChromeDriverManager
+
 
 def main():
     # Initialize the WebDriver (you may need to specify the path to your WebDriver executable)
-    driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
+    driver = webdriver.Chrome()
 
     # Open a website
     driver.get("https://www.google.com/")
@@ -17,6 +16,7 @@ def main():
 
     # Close the browser
     driver.quit()
+
 
 if __name__ == "__main__":
     main()
