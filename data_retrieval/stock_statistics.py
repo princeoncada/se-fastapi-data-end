@@ -1,3 +1,5 @@
+import os
+
 from selenium.common.exceptions import TimeoutException
 from selenium.webdriver import Chrome
 from selenium.webdriver.chrome.service import Service
@@ -5,7 +7,7 @@ from webdriver_manager.chrome import ChromeDriverManager
 
 
 def statistics(url, headers, options):
-    service = Service('./chromedriver.exe')
+    service = Service(ChromeDriverManager().install())
     with Chrome(service=service, options=options) as driver:
         driver.get(url)
         try:
