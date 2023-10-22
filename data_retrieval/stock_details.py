@@ -4,7 +4,7 @@ from selenium.common.exceptions import TimeoutException
 
 
 def details(url, headers, options):
-    with Remote(command_executor=os.environ["grid_hub_url"], options=options) as driver:
+    with Remote(command_executor=os.environ["GRID_URL"], options=options) as driver:
         driver.get(url)
         try:
             inner_dictionary = {
