@@ -3,6 +3,7 @@ from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from data_retrieval.stock_scraper import scrape
 from data_processing.stock_parser import parser
+from data_validate.stock_validator import validate
 import uvicorn
 
 app = FastAPI()
@@ -41,9 +42,9 @@ async def fetch_stock_data(ticker: str):
     return parser(result, ticker)
 
 
-@app.get("/test")
-def test():
-    return "Hello World!"
+@app.get("/validate/{ticker}")
+def validate_stock(ticker: str):
+    return validate(f"https://finance.yahoo.com/quote/{ticker}")
 
 
 @app.get("/health")
